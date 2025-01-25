@@ -57,24 +57,24 @@ class _LoginpageState extends State<Loginpage> {
   }
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.grey[300],
-        body: SafeArea(
-          child: Center(
+    return Scaffold(
+      backgroundColor: Colors.grey[300],
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 50),
-      
+            
                 // Logo
                 const Icon(
                   Icons.lock,
                   size: 100,
                 ),
-      
+            
                 const SizedBox(height: 50),
-      
+            
                 // Welcome back message
                 Text(
                   'Welcome back, you\'ve been missed!',
@@ -84,7 +84,7 @@ class _LoginpageState extends State<Loginpage> {
                   ),
                 ),
                 const SizedBox(height: 25),
-      
+            
                 // Username textfield
                 MyTextField(
                   controller: usernameController,
@@ -92,7 +92,7 @@ class _LoginpageState extends State<Loginpage> {
                   obscureText: false,
                 ),
                 const SizedBox(height: 10),
-      
+            
                 // Password textfield
                 MyTextField(
                   controller: passwordController,
@@ -100,7 +100,7 @@ class _LoginpageState extends State<Loginpage> {
                   obscureText: true,
                 ),
                 const SizedBox(height: 10),
-      
+            
                 // Forgot password
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -115,13 +115,13 @@ class _LoginpageState extends State<Loginpage> {
                   ),
                 ),
                 const SizedBox(height: 25),
-      
+            
                 // Sign in button
                 MyButton(
                   onTap: signUserIn,
                 ),
                 const SizedBox(height: 50),
-      
+            
                 // Or continue with
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -150,7 +150,7 @@ class _LoginpageState extends State<Loginpage> {
                   ),
                 ),
                 const SizedBox(height: 50),
-      
+            
                 // Not a member? Register now
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
