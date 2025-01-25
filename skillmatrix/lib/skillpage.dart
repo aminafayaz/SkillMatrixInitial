@@ -8,7 +8,7 @@ class SkillPage extends StatefulWidget {
 class _SkillPageState extends State<SkillPage> {
   final TextEditingController _skillController = TextEditingController();
   final TextEditingController _experienceController = TextEditingController();
-  final TextEditingController _proficiencyController = TextEditingController();
+  String? _selectedProficiency;
   final List<String> _skills = [];
 
   @override
@@ -72,8 +72,20 @@ class _SkillPageState extends State<SkillPage> {
                 ),
               ),
               SizedBox(height: 10),
-              TextField(
-                controller: _proficiencyController,
+              DropdownButtonFormField<String>(
+                value: _selectedProficiency,
+                items: ['Beginner', 'Intermediate', 'Advanced', 'Expert']
+                    .map((String proficiency) {
+                  return DropdownMenuItem<String>(
+                    value: proficiency,
+                    child: Text(proficiency),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedProficiency = newValue!;
+                  });
+                },
                 decoration: InputDecoration(
                   labelText: 'Enter your proficiency',
                   border: OutlineInputBorder(),
