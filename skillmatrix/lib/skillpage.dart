@@ -79,23 +79,15 @@ class _SkillPageState extends State<SkillPage> {
                   border: OutlineInputBorder(),
                 ),
               ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  // Add your save functionality here
+                },
+                child: Text('Save'),
+              ),
             ],
           ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                // Add your logic to handle the input data
-                Navigator.pop(context);
-              },
-              child: Text('Add'),
-            ),
-          ],
         );
       },
     );
