@@ -1,10 +1,30 @@
 import 'package:flutter/material.dart';
 
-class Explorepage extends StatelessWidget {
+class Explorepage extends StatefulWidget {
   const Explorepage({super.key});
 
   @override
+  _ExplorepageState createState() => _ExplorepageState();
+}
+
+class _ExplorepageState extends State<Explorepage> {
+  final List<String> skills = [
+    'Meditation coaching',
+    'Video editing',
+    'Gardening',
+    'Yoga Instruction',
+    'Graphic Designing',
+    'Tutoring'
+  ];
+
+  String searchQuery = '';
+
+  @override
   Widget build(BuildContext context) {
+    final filteredSkills = skills
+        .where((skill) => skill.toLowerCase().contains(searchQuery.toLowerCase()))
+        .toList();
+
     return MaterialApp(
       home: Scaffold(
         body: Column(
@@ -19,11 +39,16 @@ class Explorepage extends StatelessWidget {
                   ),
                   prefixIcon: Icon(Icons.search),
                 ),
+                onChanged: (query) {
+                  setState(() {
+                    searchQuery = query;
+                  });
+                },
               ),
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 5, // specify the number of items
+                itemCount: filteredSkills.length,
                 itemBuilder: (context, index) {
                   return Container(
                     height: 100,
@@ -31,7 +56,7 @@ class Explorepage extends StatelessWidget {
                     color: Colors.blue,
                     child: Center(
                       child: Text(
-                        'Item $index',
+                        filteredSkills[index],
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ),
