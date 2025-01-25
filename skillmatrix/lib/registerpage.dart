@@ -1,60 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:skillmatrix/components/MyButton.dart';
 import 'package:skillmatrix/components/MyTextField.dart';
-import'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
-class Loginpage extends StatefulWidget {
-  const Loginpage({super.key});
+class Registerpage extends StatefulWidget {
+  const Registerpage({super.key});
 
   @override
-  State<Loginpage> createState() => _LoginpageState();
+  State<Registerpage> createState() => _RegisterpageState();
 }
 
-class _LoginpageState extends State<Loginpage> {
+class _RegisterpageState extends State<Registerpage> {
   // Text editing controllers
   final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
   // Sign user in method
-  void signUserIn() async {
+  void signUserIn() {}
 
-    showDialog(context: context, builder:(context)
-    {
-      return const Center(child: CircularProgressIndicator(),);
-    });
-    try{
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: usernameController.text,
-      password: passwordController.text
-      );
-      Navigator.pop(context);
-    }on FirebaseAuthException catch (e){
-      if (e.code == 'user-not-found'){
-        wrongEmailMessage();
-      }else if (e.code == 'wrong-password'){
-        wrongPasswordMessage();
-      }
-    }
-    Navigator.pop(context);
-  }
-
-
-  void wrongEmailMessage(){
-    showDialog(context: context, builder: (context){
-      return AlertDialog(
-        title: const Text('Incorrect Email'),
-      );
-    });
-  }
-  void wrongPasswordMessage(){
-    showDialog(context: context, builder: (context){
-      return AlertDialog(
-        title: const Text('Incorrect Password'),
-      );
-    });
-  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -92,11 +56,27 @@ class _LoginpageState extends State<Loginpage> {
                   obscureText: false,
                 ),
                 const SizedBox(height: 10),
+
+                 // Password textfield
+                MyTextField(
+                  controller: emailController,
+                  hintText: 'Email',
+                  obscureText: true,
+                ),
+                const SizedBox(height: 10),
       
                 // Password textfield
                 MyTextField(
                   controller: passwordController,
                   hintText: 'Password',
+                  obscureText: true,
+                ),
+                const SizedBox(height: 10),
+
+                 // Password textfield
+                MyTextField(
+                  controller: confirmPasswordController,
+                  hintText: 'Confirm Password',
                   obscureText: true,
                 ),
                 const SizedBox(height: 10),

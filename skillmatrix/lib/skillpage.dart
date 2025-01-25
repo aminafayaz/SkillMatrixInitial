@@ -13,31 +13,33 @@ class _SkillPageState extends State<SkillPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Add Your Skills'),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: [
-          // Show the list of added skills
-          Expanded(
-            child: ListView.builder(
-              itemCount: _skills.length,
-              itemBuilder: (context, index) => ListTile(
-                leading: Icon(Icons.check),
-                title: Text(_skills[index]),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Add Your Skills'),
+          centerTitle: true,
+        ),
+        body: Column(
+          children: [
+            // Show the list of added skills
+            Expanded(
+              child: ListView.builder(
+                itemCount: _skills.length,
+                itemBuilder: (context, index) => ListTile(
+                  leading: Icon(Icons.check),
+                  title: Text(_skills[index]),
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 16),
-          // Button to open overlay
-          ElevatedButton(
-            onPressed: () => _showAddSkillDialog(context),
-            child: Text('Add Skill'),
-          ),
-          SizedBox(height: 16),
-        ],
+            SizedBox(height: 16),
+            // Button to open overlay
+            ElevatedButton(
+              onPressed: () => _showAddSkillDialog(context),
+              child: Text('Add Skill'),
+            ),
+            SizedBox(height: 16),
+          ],
+        ),
       ),
     );
   }
